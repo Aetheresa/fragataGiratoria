@@ -17,7 +17,7 @@
       <a href="{{ route('inicio') }}">Inicio</a>
       <a href="{{ route('login') }}">Iniciar Sesión</a>
       <a href="{{ route('registro') }}">Registrarse</a>
-      <a href="{{ route('contacto') }}">Contáctanos</a>
+      <a href="{{ route('contacto.form') }}">Contáctanos</a>
       <a href="{{ route('carrito') }}" class="icono-carrito" aria-label="Carrito">
         <img src="{{ asset('JPG/carrito.png') }}" alt="Icono carrito de compras" />
       </a>
@@ -49,10 +49,14 @@
       <label for="clave">Contraseña</label>
       <input type="password" id="clave" name="clave" placeholder="Ingresa tu contraseña" required />
 
+      <label for="clave">Confirmar contraseña</label>
+      <input type="password" id="clave" name="clave" placeholder="Ingresa nuevamente tu contraseña" required />
+        
       <button type="submit" class="registrarse">Registrarse</button>
       <button type="button" class="cancelar" onclick="window.location.href='{{ route('inicio') }}'">Cancelar</button>
     </form>
   </main>
+@include('layouts.footer')
 </body>
 </html>
 
