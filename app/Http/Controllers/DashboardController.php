@@ -1,20 +1,26 @@
 <?php
 
-// DashboardController.php
 namespace App\Http\Controllers;
 
-use App\Models\Compra;
 use App\Models\User;
-use App\Models\Usuario;
+use App\Models\Producto;
+use App\Models\Compra;
+use App\Models\Platillo; 
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $usuarios = Usuario::all();
-        $users = User::all();
-        $compras = Compra::all();
+        $usuarios = User::count();
+        $productos = Producto::count();
+        $compras = Compra::count();
+        $platillo = platillo::count(); 
 
-        return view('dashboard', compact('usuarios', 'users', 'compras'));
+        return view('dashboard', compact(
+            'usuarios',
+            'productos',
+            'compras',
+            'platillo'
+        ));
     }
 }

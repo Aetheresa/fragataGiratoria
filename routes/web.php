@@ -7,7 +7,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProductoController;
-use App\Http\Controllers\InsumoController;
+use App\Http\Controllers\CompraController;
+use App\Http\Controllers\PlatilloController;
+use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,13 +49,15 @@ Route::middleware(['auth'])->group(function () {
 
     // ✅ CRUDs principales
     Route::resource('usuarios', UsuarioController::class);
-    Route::resource('insumos', InsumoController::class);
     Route::resource('productos', ProductoController::class);
+    Route::resource('compras', CompraController::class);
+    Route::resource('platillos', PlatilloController::class);
+    Route::resource('pedidos', PedidoController::class);
 
     // ✅ Exportar a PDF
     Route::get('/usuarios/pdf', [UsuarioController::class, 'exportarPDF'])->name('usuarios.pdf');
-    Route::get('/insumos/pdf', [InsumoController::class, 'exportarPDF'])->name('insumos.pdf');
     Route::get('/productos/pdf', [ProductoController::class, 'exportarPDF'])->name('productos.pdf');
+    Route::get('/compras/pdf', [CompraController::class, 'exportarPDF'])->name('compras.pdf');
 });
 
 /*
@@ -61,8 +65,6 @@ Route::middleware(['auth'])->group(function () {
 | Otras vistas
 |--------------------------------------------------------------------------
 */
-Route::get('/registros', fn() => view('registros.index'))->name('registros');
-Route::get('/pedidos', fn() => view('pedidos.index'))->name('pedidos');
 Route::get('/precios', fn() => view('precios.index'))->name('precios');
 Route::get('/ajustes', fn() => view('ajustes.index'))->name('ajustes');
 Route::get('/ayuda', fn() => view('ayuda.index'))->name('ayuda');

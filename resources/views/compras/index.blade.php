@@ -6,12 +6,12 @@
 <link rel="stylesheet" href="{{ asset('css/insumos.css') }}">
 
 <div class="dashboard-box">
-    <h1>📊 Estadísticas De Insumos</h1>
+    <h1>📊 Estadísticas De Ventas</h1>
 
     <div class="dashboard-grid">
         <!-- Donut -->
         <div class="chart-box">
-            <h3>Insumos</h3>
+            <h3>Ventas</h3>
             <canvas id="donutChart"></canvas>
             <ul class="legend">
                 <li><span style="color:#2563eb;">●</span> Predicciones: 30%</li>

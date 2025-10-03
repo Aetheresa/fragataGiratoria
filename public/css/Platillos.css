@@ -8,13 +8,22 @@ body {
 }
 
 /* ====== Caja principal ====== */
-.dashboard-box {
-    background: rgba(255, 255, 255, 0.89);
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgb(255, 255, 255);
-    margin: 1rem;
-    width: 100%;
+.dashboard-box { background: rgba(255, 255, 255, 0.92); 
+    border-radius: 0.8rem; padding: 2rem; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+    margin: 1rem; 
+    width: 100%; }
+
+/* ====== Mensajes ====== */
+.alert-success {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #10b981;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: bold;
 }
 
 /* ====== Títulos ====== */
@@ -36,8 +45,7 @@ body {
 }
 
 /* ====== Botón Agregar ====== */
-.btn-agregar,
-.btn.add {
+.btn-agregar {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -49,32 +57,33 @@ body {
     font-weight: 600;
     transition: background 0.2s;
 }
-.btn-agregar:hover,
-.btn.add:hover {
+.btn-agregar:hover {
     background: #059669;
 }
 
 /* ====== Tablas ====== */
-.table-usuarios,
-.table-productos {
+.table-platillos {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
     font-size: 0.95rem;
 }
 
-.table-usuarios th, .table-usuarios td,
-.table-productos th, .table-productos td {
+.table-platillos th,
+.table-platillos td {
     border: 1px solid #e5e7eb;
     padding: 0.75rem;
     text-align: center;
 }
 
-.table-usuarios th,
-.table-productos th {
+.table-platillos th {
     background: #f9fafb;
     font-weight: 600;
     color: #374151;
+}
+
+.table-platillos tr:hover {
+    background: #f3f4f6;
 }
 
 /* ====== Acciones ====== */
@@ -93,6 +102,7 @@ body {
     font-size: 0.9rem;
     transition: background 0.2s;
     border: none;
+    cursor: pointer;
 }
 .btn.edit:hover {
     background: #d97706;
@@ -117,4 +127,5 @@ body {
     text-align: center;
     color: #6b7280;
     font-style: italic;
+    padding: 1rem;
 }

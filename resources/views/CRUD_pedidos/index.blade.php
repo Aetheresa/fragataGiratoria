@@ -8,10 +8,12 @@
 <div class="dashboard-box">
     <h1 class="text-2xl font-bold mb-4">📦 Lista de Pedidos</h1>
 
+    <!-- Botón crear -->
     <div class="actions-header mb-4">
         <a href="{{ route('pedidos.create') }}" class="btn-agregar">➕ Nuevo Pedido</a>
     </div>
 
+    <!-- Tabla -->
     <table class="table-pedidos">
         <thead>
             <tr>
@@ -32,7 +34,10 @@
                     <td>{{ $pedido->estado }}</td>
                     <td>${{ number_format($pedido->total, 2) }}</td>
                     <td class="acciones">
+                        <!-- Editar -->
                         <a href="{{ route('pedidos.edit', $pedido->id_pedido) }}" class="btn edit">✏️</a>
+
+                        <!-- Eliminar -->
                         <form action="{{ route('pedidos.destroy', $pedido->id_pedido) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
@@ -48,7 +53,8 @@
         </tbody>
     </table>
 
-    <div class="mt-4">
+    <!-- Paginación -->
+    <div class="mt-4 flex justify-center">
         {{ $pedidos->links() }}
     </div>
 </div>

@@ -31,14 +31,14 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre_producto' => 'required|string|max:255',
-            'tipo_producto'   => 'required|string|max:255',
-            'unidad_medida'   => 'nullable|string|max:100',
+            'nombre_producto'     => 'required|string|max:255',
+            'tipo_producto'       => 'required|string|max:255',
+            'unidad_medida'       => 'nullable|string|max:100',
             'cantidad_disponible' => 'required|numeric|min:0',
-            'stock_inicial'   => 'required|numeric|min:0',
-            'stock_final'     => 'required|numeric|min:0',
-            'stock_minimo'    => 'required|numeric|min:0',
-            'proveedor'       => 'nullable|string|max:255',
+            'stock_inicial'       => 'required|numeric|min:0',
+            'stock_final'         => 'required|numeric|min:0',
+            'stock_minimo'        => 'required|numeric|min:0',
+            'proveedor'           => 'nullable|string|max:255',
         ]);
 
         Producto::create($request->all());
@@ -66,14 +66,14 @@ class ProductoController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nombre_producto' => 'required|string|max:255',
-            'tipo_producto'   => 'required|string|max:255',
-            'unidad_medida'   => 'nullable|string|max:100',
+            'nombre_producto'     => 'required|string|max:255',
+            'tipo_producto'       => 'required|string|max:255',
+            'unidad_medida'       => 'nullable|string|max:100',
             'cantidad_disponible' => 'required|numeric|min:0',
-            'stock_inicial'   => 'required|numeric|min:0',
-            'stock_final'     => 'required|numeric|min:0',
-            'stock_minimo'    => 'required|numeric|min:0',
-            'proveedor'       => 'nullable|string|max:255',
+            'stock_inicial'       => 'required|numeric|min:0',
+            'stock_final'         => 'required|numeric|min:0',
+            'stock_minimo'        => 'required|numeric|min:0',
+            'proveedor'           => 'nullable|string|max:255',
         ]);
 
         $producto = Producto::findOrFail($id);
@@ -81,7 +81,7 @@ class ProductoController extends Controller
 
         return redirect()
             ->route('productos.index')
-            ->with('success', '✅ Producto actualizado correctamente');
+            ->with('success', '✏️ Producto actualizado correctamente');
     }
 
     // 🗑️ Eliminar producto
@@ -96,17 +96,17 @@ class ProductoController extends Controller
     }
 
     // 📄 Exportar a PDF
-public function exportarPDF()
-{
-    $productos = Producto::all();
+    public function exportarPDF()
+    {
+        $productos = Producto::all();
 
-    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('CRUD_Productos.pdf', compact('productos'))
-              ->setPaper('a4', 'landscape');
+        $pdf = Pdf::loadView('CRUD_Productos.pdf', compact('productos'))
+                  ->setPaper('a4', 'landscape');
 
-    // 🔽 Descargar automáticamente
-    return $pdf->download('reporte_productos.pdf');
+        // 🔽 Descargar automáticamente
+        return $pdf->download('reporte_productos.pdf');
 
-    // 👉 Si prefieres verlo en navegador, usa:
-    // return $pdf->stream('reporte_productos.pdf');
-}
+        // 👉 Si prefieres verlo en navegador:
+        // return $pdf->stream('reporte_productos.pdf');
+    }
 }

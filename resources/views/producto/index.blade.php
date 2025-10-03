@@ -48,6 +48,7 @@
                         </td>
                     </tr>
                 @empty
+                </thead>
                     <tr>
                         <td colspan="6" class="border px-4 py-2 text-center text-gray-500">
                             No hay productos registrados

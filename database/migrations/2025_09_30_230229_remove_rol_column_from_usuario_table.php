@@ -6,23 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::table('usuario', function (Blueprint $table) {
-            $table->dropColumn('rol'); // 🚀 eliminamos la columna vieja
+            // Agregamos el campo 'rol' como texto (varchar 50)
+            $table->string('rol', 50)->default('Usuario')->after('email');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::table('usuario', function (Blueprint $table) {
-            $table->string('rol', 50)->nullable(); // 🚀 restauramos la columna si hacemos rollback
+            $table->dropColumn('rol');
         });
     }
 };
+

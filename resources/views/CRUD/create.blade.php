@@ -3,49 +3,62 @@
 @section('title', 'Crear Usuario')
 
 @section('content')
-    <h2 class="text-2xl font-bold mb-6">➕ Crear Usuario</h2>
+    <!-- Conexión al CSS -->
+    <link rel="stylesheet" href="{{ asset('css/createusuario.css') }}">
 
-    @if ($errors->any())
-        <div class="mb-4 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-            <strong>Oops!</strong> Corrige los siguientes errores:
-            <ul class="mt-2 list-disc list-inside">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    <div class="dashboard-box">
+        <h2 class="form-title">➕ Crear Usuario</h2>
 
-    <form action="{{ route('usuarios.store') }}" method="POST" class="bg-white p-6 shadow rounded-lg">
-        @csrf
-        <div class="mb-4">
-            <label class="block">Usuario</label>
-            <input type="text" name="usuario" value="{{ old('usuario') }}" class="w-full border rounded px-3 py-2" required>
-        </div>
+        <!-- ✅ Notificación de éxito -->
+        @if(session('success'))
+            <div class="alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
-        <div class="mb-4">
-            <label class="block">Nombre completo</label>
-            <input type="text" name="nombre_usuario" value="{{ old('nombre_usuario') }}" class="w-full border rounded px-3 py-2" required>
-        </div>
+        <!-- ⚠️ Validación de errores -->
+        @if ($errors->any())
+            <div class="alert-error">
+                <strong>⚠️ Oops!</strong> Corrige los siguientes errores:
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-        <div class="mb-4">
-            <label class="block">Correo electrónico</label>
-            <input type="email" name="email" value="{{ old('email') }}" class="w-full border rounded px-3 py-2" required>
-        </div>
+        <form action="{{ route('usuarios.store') }}" method="POST" class="form-usuarios">
+            @csrf
+            <div class="form-group">
+                <label>Usuario</label>
+                <input type="text" name="usuario" value="{{ old('usuario') }}" class="input-field" required>
+            </div>
 
-        <div class="mb-4">
-            <label class="block">Contraseña</label>
-            <input type="password" name="password" class="w-full border rounded px-3 py-2" required>
-        </div>
+            <div class="form-group">
+                <label>Nombre completo</label>
+                <input type="text" name="nombre_usuario" value="{{ old('nombre_usuario') }}" class="input-field" required>
+            </div>
 
-        <div class="mb-4">
-            <label class="block">Rol</label>
-            <input type="text" name="rol" value="{{ old('rol') }}" class="w-full border rounded px-3 py-2">
-        </div>
+            <div class="form-group">
+                <label>Correo electrónico</label>
+                <input type="email" name="email" value="{{ old('email') }}" class="input-field" required>
+            </div>
 
-        <div class="flex justify-between">
-            <a href="{{ route('usuarios.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">⬅️ Volver</a>
-            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">✅ Guardar</button>
-        </div>
-    </form>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" name="password" class="input-field" required>
+            </div>
+
+            <div class="form-group">
+                <label>Rol</label>
+                <input type="text" name="nombre_rol" value="{{ old('nombre_rol') }}" class="input-field">
+            </div>
+
+            <div class="form-actions">
+                <a href="{{ route('usuarios.index') }}" class="btn-cancelar">⬅️ Volver</a>
+                <button type="submit" class="btn-guardar">✅ Guardar</button>
+            </div>
+        </form>
+    </div>
 @endsection

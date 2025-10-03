@@ -1,29 +1,32 @@
 @extends('layouts.sidebar')
 
-@section('title', 'Dashboard')
-
 @section('content')
-    <!-- Vinculamos el CSS -->
-    <link rel="stylesheet" href="{{ asset('css/bienvenida.css') }}">
+<link rel="stylesheet" href="{{ asset('css/bienvenida.css') }}">
 
-    <div class="welcome-hero">
-        <h1 class="welcome-title">👋 Bienvenido, Administrador</h1>
-        <p class="welcome-subtitle">Este es tu panel principal para gestionar todo el sistema.</p>
+<div class="dashboard-wrapper">
+    <div class="welcome-container">
+        <h1>🍽️ Bienvenido al Sistema de Gestión</h1>
+        <p>
+            Este panel te permitirá administrar los <strong>usuarios</strong>, 
+            <strong>productos</strong> y <strong>compras</strong> de tu restaurante.
+        </p>
 
-        <!-- 🔥 Métricas rápidas dentro del bloque -->
-        <div class="quick-stats">
-            <div class="stat">
-                <span class="stat-title">Pedidos Pendientes</span>
-                <span class="stat-value">124</span>
+        <div class="stats-preview">
+            <div class="stat-card">
+                <h2>{{ \App\Models\User::count() }}</h2>
+                <span>Usuarios registrados</span>
             </div>
-            <div class="stat">
-                <span class="stat-title">Usuarios Activos</span>
-                <span class="stat-value">582</span>
+            <div class="stat-card">
+                <h2>{{ \App\Models\Producto::count() }}</h2>
+                <span>Productos activos</span>
             </div>
-            <div class="stat">
-                <span class="stat-title">Ventas Hoy</span>
-                <span class="stat-value">$4.2K</span>
+            <div class="stat-card">
+                <h2>{{ \App\Models\Compra::count() }}</h2>
+                <span>Compras registradas</span>
             </div>
         </div>
+
+        <a href="{{ route('login') }}" class="welcome-btn">Salir Del dashboard</a>
     </div>
+</div>
 @endsection

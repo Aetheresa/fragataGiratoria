@@ -1,85 +1,126 @@
-/* ===== Fondo exclusivo del Dashboard ===== */
-main.content {
-    flex: 1;
-    padding: 2rem;
-    overflow-y: auto;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #0f172a, #1e293b, #334155); /* degradado moderno */
+/* ==== Estilo general de la pantalla de bienvenida ==== */
+body {
+    background: url('/JPG/BGgeneral.jpg') no-repeat center center fixed;
     background-size: cover;
-    background-attachment: fixed;
-    border-radius: 12px;
-    margin: 0; /* quita espacios innecesarios */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal */
+.welcome-container {
+    text-align: center;
+    max-width: 800px;
+    padding: 50px;
+    background-color: rgba(255, 255, 255, 0.89);
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centra vertical */
+    align-items: center;     /* centra horizontal */
+    text-align: center;
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.dashboard-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: calc(100vh - 60px); /* ajusta según el tamaño de tu header/sidebar */
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* ===== Contenedor de bienvenida ===== */
-.welcome-container {
-    text-align: center;
-    color: white;
-    padding: 3rem;
-    border-radius: 20px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    max-width: 800px;
-    width: 90%;
+.welcome-container h1,
+.welcome-container p {
+    color: rgb(8, 19, 31); 
 }
 
-/* ===== Título ===== */
-.welcome-title {
-    font-size: 2.8rem;
-    font-weight: 900;
-    margin-bottom: 1rem;
-    letter-spacing: -1px;
-    text-transform: uppercase;
-    background: linear-gradient(90deg, #22d3ee, #6366f1, #e879f9);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+/* Título */
+.welcome-container h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-weight: bold;
 }
 
-/* ===== Subtítulo ===== */
-.welcome-subtitle {
+/* Subtítulo */
+.welcome-container p {
     font-size: 1.2rem;
-    font-weight: 400;
-    margin-bottom: 2rem;
-    color: #e2e8f0;
+    opacity: 0.9;
+    margin-bottom: 30px;
 }
 
-/* ===== Tarjetas métricas ===== */
-.welcome-stats {
+/* Estadísticas previas */
+.stats-preview {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    gap: 20px;
     flex-wrap: wrap;
 }
 
 .stat-card {
-    background: rgba(255, 255, 255, 0.12);
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px 25px;
+    border-radius: 15px;
+    flex: 1;
     min-width: 150px;
-    text-align: center;
-    transition: transform 0.2s ease, background 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 .stat-card:hover {
     transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.18);
+    background: rgb(8, 19, 31);
 }
 
-.stat-title {
-    font-size: 1rem;
-    color: #cbd5e1;
-    margin-bottom: 0.5rem;
+.stat-card h2 {
+    font-size: 2rem;
+    margin: 0;
+    color: #fff;
 }
 
-.stat-value {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: #f1f5f9;
+.stat-card span {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+/* Botón de entrar */
+.welcome-btn {
+    display: inline-block;
+    background: #fff;
+    color: #4f46e5;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 12px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.welcome-btn:hover {
+    background: #f3f4f6;
+    transform: translateY(-3px);
+}
+
+.stat-card {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px;
+    text-align: center;
+    color: white;
+}
+
+/* Animación */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.welcome-container {
+    animation: fadeIn 1s ease-in-out;
 }

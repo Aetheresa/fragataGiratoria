@@ -2,31 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usuario extends Authenticatable implements AuthenticatableContract
+class Usuario extends Authenticatable
 {
     use HasFactory;
 
-    protected $table = 'usuario';         
-    protected $primaryKey = 'id_usuario'; 
-    public $timestamps = false;           
+    protected $table = 'usuario';   // 👈 muy importante si tu tabla no es plural
+
+    protected $primaryKey = 'id_usuario'; // 👈 porque tu PK no es "id"
+
+    public $timestamps = false; // 👈 si tu tabla no tiene created_at / updated_at
 
     protected $fillable = [
         'usuario',
-        'password',
-        'email',
         'nombre_usuario',
-        'fecha_creacion',
-        'ultimo_acceso',
-        'rol',
-        'estado_usuario',
-    ];
-
-    // 👇 importante para que Laravel sepa qué campo es la contraseña
-    protected $hidden = [
+        'email',
         'password',
+        'nombre_rol', // 👈 AGREGA ESTO
     ];
 }
