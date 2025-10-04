@@ -7,26 +7,17 @@ use Illuminate\Http\Request;
 
 class PlatilloController extends Controller
 {
-    /**
-     * 📌 Muestra la lista de platillos.
-     */
     public function index()
     {
-        $platillos = Platillo::paginate(10); // paginación
+        $platillos = Platillo::paginate(10);
         return view('CRUD_Platillos.index', compact('platillos'));
     }
 
-    /**
-     * 📌 Formulario de creación.
-     */
     public function create()
     {
         return view('CRUD_Platillos.create');
     }
 
-    /**
-     * 📌 Guardar nuevo platillo.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -42,18 +33,12 @@ class PlatilloController extends Controller
             ->with('success', '✅ Platillo creado correctamente.');
     }
 
-    /**
-     * 📌 Formulario de edición.
-     */
     public function edit($id)
     {
         $platillo = Platillo::findOrFail($id);
         return view('CRUD_Platillos.edit', compact('platillo'));
     }
 
-    /**
-     * 📌 Actualizar platillo.
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -70,9 +55,6 @@ class PlatilloController extends Controller
             ->with('success', '✏️ Platillo actualizado correctamente.');
     }
 
-    /**
-     * 📌 Eliminar platillo.
-     */
     public function destroy($id)
     {
         $platillo = Platillo::findOrFail($id);

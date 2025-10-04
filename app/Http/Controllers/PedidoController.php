@@ -7,67 +7,77 @@ use Illuminate\Http\Request;
 
 class PedidoController extends Controller
 {
-    // 📦 Listar pedidos con paginación
-    public function index()
+    // Mostrar lista con paginación y filtro de búsqueda
+    public function index(Request $request)
     {
-        // ✅ Usamos paginate() en lugar de all()
-        $pedidos = Pedido::paginate(10);
+        $query = Pedido::query();
+
+        // Filtro de búsqueda por nombre de platillo o ID de mesa
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where('nombre_platillo', 'LIKE', "%{$search}%")
+                  ->orWhere('id_mesa', 'LIKE', "%{$search}%");
+        }
+
+        $pedidos = $query->paginate(10)->appends($request->all());
+
         return view('CRUD_pedidos.index', compact('pedidos'));
     }
 
-    // ➕ Crear nuevo pedido
+    // Mostrar formulario creación
     public function create()
     {
         return view('CRUD_pedidos.create');
     }
 
-    // 💾 Guardar pedido
+    // Guardar nuevo pedido
     public function store(Request $request)
     {
         $request->validate([
-            'cliente' => 'required|string|max:150',
-            'fecha'   => 'required|date',
-            'estado'  => 'required|string|max:50',
-            'total'   => 'required|numeric|min:0',
+            'fecha_hora' => 'required|date',
+            'tiempo_estimado' => 'nullable',
+            'total_a_pagar' => 'required|numeric|min:0',
+            'nombre_platillo' => 'nullable|string|max:255',
+            'id_mesa' => 'required|integer',
+            'id_estado_pedido' => 'required|integer',
         ]);
 
         Pedido::create($request->all());
 
-        return redirect()->route('pedidos.index')
-            ->with('success', '✅ Pedido creado correctamente.');
+        return redirect()->route('pedidos.index')->with('success', '✅ Pedido creado correctamente.');
     }
 
-    // ✏️ Editar pedido
+    // Mostrar formulario edición
     public function edit($id)
     {
         $pedido = Pedido::findOrFail($id);
         return view('CRUD_pedidos.edit', compact('pedido'));
     }
 
-    // 🔄 Actualizar pedido
+    // Actualizar pedido
     public function update(Request $request, $id)
     {
         $request->validate([
-            'cliente' => 'required|string|max:150',
-            'fecha'   => 'required|date',
-            'estado'  => 'required|string|max:50',
-            'total'   => 'required|numeric|min:0',
+            'fecha_hora' => 'required|date',
+            'tiempo_estimado' => 'nullable',
+            'total_a_pagar' => 'required|numeric|min:0',
+            'nombre_platillo' => 'nullable|string|max:255',
+            'id_mesa' => 'required|integer',
+            'id_estado_pedido' => 'required|integer',
         ]);
 
         $pedido = Pedido::findOrFail($id);
         $pedido->update($request->all());
 
-        return redirect()->route('pedidos.index')
-            ->with('success', '✏️ Pedido actualizado correctamente.');
+        return redirect()->route('pedidos.index')->with('success', '✏️ Pedido actualizado correctamente.');
     }
 
-    // 🗑️ Eliminar pedido
+    // Eliminar pedido
     public function destroy($id)
     {
         $pedido = Pedido::findOrFail($id);
         $pedido->delete();
 
-        return redirect()->route('pedidos.index')
-            ->with('success', '🗑️ Pedido eliminado correctamente.');
+        return redirect()->route('pedidos.index')->with('success', '🗑️ Pedido eliminado correctamente.');
     }
 }

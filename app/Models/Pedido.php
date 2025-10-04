@@ -9,14 +9,16 @@ class Pedido extends Model
 {
     use HasFactory;
 
-    protected $table = 'pedido'; // 👈 asegúrate que tu tabla se llame así
+    protected $table = 'pedido';
     protected $primaryKey = 'id_pedido';
-    public $timestamps = false; // si no usas created_at / updated_at
+    public $timestamps = false;
 
     protected $fillable = [
-        'cliente',
-        'fecha',
-        'estado',
-        'total'
+        'fecha_hora',
+        'tiempo_estimado',
+        'total_a_pagar',
+        'nombre_platillo',
+        'id_mesa',
+        'id_estado_pedido'
     ];
 }
