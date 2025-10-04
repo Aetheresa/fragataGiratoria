@@ -3,42 +3,60 @@
 @section('title', 'Editar Platillo')
 
 @section('content')
-
 <link rel="stylesheet" href="{{ asset('css/editplatillo.css') }}">
 
 <div class="dashboard-box">
-    <h1 class="text-2xl font-bold mb-4">✏️ Editar Platillo</h1>
+    <h2 class="form-title">✏️ Editar Platillo</h2>
 
-    <form action="{{ route('platillos.update', $platillo->id_platillo) }}" method="POST" class="space-y-4">
+    @if(session('success'))
+        <div class="alert-success">{{ session('success') }}</div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert-error">
+            <strong>⚠️ Corrige los siguientes errores:</strong>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('platillos.update', $platillo->id_platillo) }}" method="POST" class="form-platillo">
         @csrf
         @method('PUT')
 
-        <div>
-            <label class="block font-semibold">Nombre</label>
-            <input type="text" name="nombre_platillo" value="{{ $platillo->nombre_platillo }}" class="w-full border p-2 rounded" required>
+        <div class="form-group">
+            <label>Nombre del Platillo</label>
+            <input type="text" name="nombre_platillo"
+                   value="{{ old('nombre_platillo', $platillo->nombre_platillo) }}"
+                   class="input-field" required>
         </div>
 
-        <div>
-            <label class="block font-semibold">Descripción</label>
-            <textarea name="descripcion" class="w-full border p-2 rounded" required>{{ $platillo->descripcion }}</textarea>
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea name="descripcion" class="input-field" required>{{ old('descripcion', $platillo->descripcion) }}</textarea>
         </div>
 
-        <div>
-            <label class="block font-semibold">Precio</label>
-            <input type="number" step="0.01" name="precio" value="{{ $platillo->precio }}" class="w-full border p-2 rounded" required>
+        <div class="form-group">
+            <label>Precio</label>
+            <input type="number" step="0.01" name="precio"
+                   value="{{ old('precio', $platillo->precio) }}"
+                   class="input-field" required>
         </div>
 
-        <div>
-            <label class="block font-semibold">Adicional</label>
-            <input type="text" name="id_adicional" value="{{ $platillo->id_adicional }}" class="w-full border p-2 rounded">
+        <div class="form-group">
+            <label>Adicional</label>
+            <input type="text" name="id_adicional"
+                   value="{{ old('id_adicional', $platillo->id_adicional) }}"
+                   class="input-field">
         </div>
 
-        <!-- Botones -->
-        <div class="flex justify-end gap-4 mt-4">
-            <button type="submit" class="btn-submit">💾 Guardar cambios</button>
-            <a href="{{ route('platillos.index') }}" class="btn-cancel">❌ Cancelar</a>
+        <div class="form-actions">
+            <a href="{{ route('platillos.index') }}" class="btn-cancelar">⬅️ Volver</a>
+            <button type="submit" class="btn-guardar">💾 Guardar cambios</button>
         </div>
     </form>
 </div>
-
 @endsection

@@ -8,6 +8,11 @@
 <div class="dashboard-box">
     <h1>📦 Lista de Productos</h1>
 
+    <!-- 🔍 Buscador -->
+    <div class="search-container mb-4">
+        <input class="search-input" type="search" id="search-producto" placeholder="🔍 Buscar Producto" />
+    </div>
+
     <div class="actions-header">
         <a href="{{ route('productos.create') }}" class="btn-agregar">➕ Agregar Producto</a>
         <a href="{{ route('productos.pdf') }}" class="btn-agregar" style="background:#3b82f6;"> 📄 Exportar PDF</a>
@@ -30,7 +35,7 @@
         </thead>
         <tbody>
             @forelse($productos as $producto)
-                <tr>
+                <tr class="producto-row">
                     <td>{{ $producto->id_producto }}</td>
                     <td>{{ $producto->nombre_producto }}</td>
                     <td>{{ $producto->tipo_producto }}</td>
@@ -59,4 +64,36 @@
         {{ $productos->links() }}
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const searchInput = document.getElementById("search-producto");
+    const tableRows = document.querySelectorAll(".producto-row");  // Clase de cada fila de la tabla
+
+    searchInput.addEventListener("input", function() {
+        const searchTerm = searchInput.value.toLowerCase();
+
+        tableRows.forEach(row => {
+            const cells = row.getElementsByTagName("td");
+            let matchFound = false;
+
+            // Iterar sobre todas las celdas de la fila y buscar coincidencias
+            for (let cell of cells) {
+                if (cell.textContent.toLowerCase().includes(searchTerm)) {
+                    matchFound = true;
+                    break;
+                }
+            }
+
+            // Resaltar las filas que coinciden con el término de búsqueda en verde
+            if (matchFound) {
+                row.style.backgroundColor = "rgba(34, 197, 94, 0.3)";  // Verde claro
+            } else {
+                row.style.backgroundColor = "";  // Eliminar el resaltado si no hay coincidencia
+            }
+        });
+    });
+});
+</script>
+
 @endsection

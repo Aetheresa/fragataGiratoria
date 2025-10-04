@@ -1,3 +1,4 @@
+/* ====== Fondo general ====== */
 body {
     background: url('/JPG/BGgeneral.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -6,26 +7,26 @@ body {
     padding: 0;
 }
 
-
-/* Caja principal */
+/* ====== Caja principal ====== */
 .dashboard-box {
     background: rgba(255, 255, 255, 0.92);
-    padding: 2rem;
     border-radius: 1rem;
+    padding: 2rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     margin: 2rem auto;
     width: 80%;
 }
 
-/* Título */
+/* ====== Título ====== */
 .form-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
-    margin-bottom: 1.5rem;
     color: #111827;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
-/* Campos */
+/* ====== Campos ====== */
 .form-group {
     margin-bottom: 1.2rem;
 }
@@ -39,33 +40,35 @@ body {
 
 .input-field {
     width: 100%;
-    padding: 0.6rem 0.8rem;
+    padding: 0.7rem 0.9rem;
     border: 1px solid #d1d5db;
     border-radius: 0.5rem;
     font-size: 1rem;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
+    background-color: white;
 }
 
 .input-field:focus {
     border-color: #2563eb;
     outline: none;
-    box-shadow: 0 0 4px #2563eb;
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
 }
 
-/* Botones */
+/* ====== Botones ====== */
 .form-actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 1rem;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
 }
 
 .btn-cancelar {
     background: #6b7280;
     color: #fff;
-    padding: 0.6rem 1.2rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     text-decoration: none;
+    font-weight: 600;
     transition: background 0.2s;
 }
 .btn-cancelar:hover {
@@ -75,31 +78,34 @@ body {
 .btn-guardar {
     background: #10b981;
     color: #fff;
-    padding: 0.6rem 1.2rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     border: none;
     cursor: pointer;
+    font-weight: 600;
     transition: background 0.2s;
 }
 .btn-guardar:hover {
     background: #059669;
 }
 
-/* Notificaciones */
+/* ====== Alertas ====== */
 .alert-success {
     background: #d1fae5;
     border: 1px solid #10b981;
     color: #065f46;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
+    padding: 1rem;
     border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 .alert-error {
     background: #fee2e2;
     border: 1px solid #ef4444;
     color: #991b1b;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
+    padding: 1rem;
     border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
 }

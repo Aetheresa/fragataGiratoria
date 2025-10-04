@@ -1,4 +1,4 @@
-/* ====== Fondo general ====== */
+/* ====== General ====== */
 body {
     background: url('/JPG/BGgeneral.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -18,28 +18,30 @@ body {
 }
 
 /* ====== Título ====== */
-.form-title {
-    font-size: 1.8rem;
+.dashboard-box h1 {
+    font-size: 1.6rem;
     font-weight: bold;
     margin-bottom: 1.5rem;
     color: #111827;
 }
 
-/* ====== Campos ====== */
-.form-group {
-    margin-bottom: 1.2rem;
+/* ====== Formularios ====== */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
 }
 
 .form-group label {
     display: block;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     color: #374151;
 }
 
 .input-field {
     width: 100%;
-    padding: 0.7rem 1rem;
+    padding: 0.6rem 0.8rem;
     border: 1px solid #d1d5db;
     border-radius: 0.5rem;
     font-size: 1rem;
@@ -53,17 +55,16 @@ body {
 }
 
 /* ====== Botones ====== */
-.form-actions {
+.form-buttons {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
     margin-top: 1.5rem;
 }
 
 .btn-cancelar {
     background: #6b7280;
     color: #fff;
-    padding: 0.7rem 1.4rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 0.5rem;
     text-decoration: none;
     transition: background 0.2s;
@@ -75,7 +76,7 @@ body {
 .btn-guardar {
     background: #10b981;
     color: #fff;
-    padding: 0.7rem 1.4rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 0.5rem;
     border: none;
     cursor: pointer;
@@ -85,16 +86,7 @@ body {
     background: #059669;
 }
 
-/* ====== Alertas ====== */
-.alert-success {
-    background: #d1fae5;
-    border: 1px solid #10b981;
-    color: #065f46;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border-radius: 0.5rem;
-}
-
+/* ====== Errores ====== */
 .alert-error {
     background: #fee2e2;
     border: 1px solid #ef4444;

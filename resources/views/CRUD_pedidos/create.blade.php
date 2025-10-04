@@ -3,10 +3,10 @@
 @section('title', 'Crear Pedido')
 
 @section('content')
-<link rel="stylesheet" href="{{ asset('css/pedidos.css') }}">
+<link rel="stylesheet" href="{{ asset('css/createpedidos.css') }}">
 
-<div class="form-box">
-    <h2 class="form-title">➕ Crear Pedido</h2>
+<div class="dashboard-box">
+    <h1 class="text-2xl font-bold mb-4">➕ Crear Pedido</h1>
 
     @if ($errors->any())
         <div class="alert-error">
@@ -23,39 +23,38 @@
         @csrf
 
         <div class="form-group">
-            <label>Cliente</label>
-            <select name="id_usuario" class="input-field" required>
-                <option value="">-- Selecciona un cliente --</option>
-                @foreach($usuarios as $usuario)
-                    <option value="{{ $usuario->id_usuario }}" {{ old('id_usuario') == $usuario->id_usuario ? 'selected' : '' }}>
-                        {{ $usuario->nombre_usuario }}
-                    </option>
-                @endforeach
-            </select>
+            <label>Fecha y Hora</label>
+            <input type="datetime-local" name="fecha_hora" class="input-field" required>
         </div>
 
         <div class="form-group">
-            <label>Fecha del Pedido</label>
-            <input type="datetime-local" name="fecha_pedido" value="{{ old('fecha_pedido') }}" class="input-field" required>
+            <label>Tiempo Estimado (HH:MM:SS)</label>
+            <input type="time" name="tiempo_estimado" class="input-field">
         </div>
 
         <div class="form-group">
-            <label>Total</label>
-            <input type="number" step="0.01" name="total" value="{{ old('total') }}" class="input-field" required>
+            <label>Total a Pagar</label>
+            <input type="number" step="0.01" name="total_a_pagar" class="input-field" required>
         </div>
 
         <div class="form-group">
-            <label>Estado</label>
-            <select name="estado" class="input-field" required>
-                <option value="Pendiente" {{ old('estado') == 'Pendiente' ? 'selected' : '' }}>Pendiente</option>
-                <option value="Pagado" {{ old('estado') == 'Pagado' ? 'selected' : '' }}>Pagado</option>
-                <option value="Enviado" {{ old('estado') == 'Enviado' ? 'selected' : '' }}>Enviado</option>
-            </select>
+            <label>Nombre del Platillo</label>
+            <input type="text" name="nombre_platillo" class="input-field">
+        </div>
+
+        <div class="form-group">
+            <label>ID Mesa</label>
+            <input type="number" name="id_mesa" class="input-field" required>
+        </div>
+
+        <div class="form-group">
+            <label>ID Estado del Pedido</label>
+            <input type="number" name="id_estado_pedido" class="input-field" required>
         </div>
 
         <div class="form-buttons">
             <a href="{{ route('pedidos.index') }}" class="btn-cancelar">⬅️ Volver</a>
-            <button type="submit" class="btn-guardar">✅ Guardar</button>
+            <button type="submit" class="btn-guardar">💾 Guardar Pedido</button>
         </div>
     </form>
 </div>

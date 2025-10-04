@@ -19,7 +19,7 @@
                 </div>
 
                 <!-- 🔍 Buscador -->
-                <input class="search-input" type="search" placeholder="🔍 Búsqueda" />
+                <input class="search-input" type="search" id="search-input" placeholder="🔍 Búsqueda" />
 
                 <!-- Menú principal -->
                 <nav class="menu">
@@ -27,9 +27,9 @@
                     <a href="{{ route('productos.index') }}" class="nav-button {{ request()->routeIs('productos.index') ? 'active' : '' }}">Productos</a>
                     <a href="{{ route('platillos.index') }}" class="nav-button {{ request()->routeIs('platillos.*') ? 'active' : '' }}">Platillos</a>
                     <a href="{{ route('compras.index') }}" class="nav-button {{ request()->routeIs('compras.*') ? 'active' : '' }}">Compras</a>
-                    <a href="{{ route('pedidos') }}" class="nav-button {{ request()->routeIs('pedidos.*') ? 'active' : '' }}">Pedidos</a>
+                    <a href="{{ route('pedidos.index') }}" class="nav-button {{ request()->routeIs('pedidos.*') ? 'active' : '' }}">Pedidos</a>
                     <a href="{{ route('usuarios.index') }}" class="nav-button {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">Usuarios</a>
-                    <a href="{{ route('precios') }}" class="nav-button {{ request()->routeIs('precios') ? 'active' : '' }}">Precios</a>
+                    <a href="{{ route('metodosdepago.index') }}" class="nav-button {{ request()->routeIs('metodosdepago.*') ? 'active' : '' }}">Métodos de Pago</a>
                 </nav>
             </div>
 
@@ -49,5 +49,30 @@
             @yield('content')
         </main>
     </div>
+
+    <!-- Código JavaScript que resalta los botones del menú -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById("search-input");
+            const navButtons = document.querySelectorAll(".nav-button");  // Todos los botones de navegación
+
+            searchInput.addEventListener("input", function() {
+                const searchTerm = searchInput.value.toLowerCase();
+
+                navButtons.forEach(button => {
+                    // Compara el texto del botón con el término de búsqueda
+                    const buttonText = button.textContent.toLowerCase();
+
+                    if (buttonText.includes(searchTerm)) {
+                        // Resalta el botón si coincide
+                        button.style.backgroundColor = "#ff8c00";  // Naranja bonito
+                    } else {
+                        // Restaura el color si no hay coincidencia
+                        button.style.backgroundColor = "";  
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

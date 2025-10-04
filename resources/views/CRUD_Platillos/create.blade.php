@@ -1,43 +1,61 @@
 @extends('layouts.sidebar')
 
-@section('title', 'Crear Platillo')
+@section('title', 'Nuevo Platillo')
 
 @section('content')
-
 <link rel="stylesheet" href="{{ asset('css/createplatillos.css') }}">
 
 <div class="dashboard-box">
-    <h1 class="text-2xl font-bold mb-4">➕ Crear Platillo</h1>
+    <h2 class="form-title">🍽️ Nuevo Platillo</h2>
 
-    <form action="{{ route('platillos.store') }}" method="POST" class="space-y-4">
+    <!-- ✅ Notificación de éxito -->
+    @if(session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <!-- ⚠️ Validación de errores -->
+    @if ($errors->any())
+        <div class="alert-error">
+            <strong>⚠️ Oops!</strong> Corrige los siguientes errores:
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <!-- 🧾 Formulario -->
+    <form action="{{ route('platillos.store') }}" method="POST" class="form-platillo">
         @csrf
 
-        <div>
-            <label class="block font-semibold">Nombre</label>
-            <input type="text" name="nombre_platillo" class="w-full border p-2 rounded" required>
+        <div class="form-group">
+            <label>Nombre del Platillo</label>
+            <input type="text" name="nombre_platillo" class="input-field" required>
         </div>
 
-        <div>
-            <label class="block font-semibold">Descripción</label>
-            <textarea name="descripcion" class="w-full border p-2 rounded" required></textarea>
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea name="descripcion" class="input-field" required></textarea>
         </div>
 
-        <div>
-            <label class="block font-semibold">Precio</label>
-            <input type="number" step="0.01" name="precio" class="w-full border p-2 rounded" required>
+        <div class="form-group">
+            <label>Precio</label>
+            <input type="number" step="0.01" name="precio" class="input-field" required>
         </div>
 
-        <div>
-            <label class="block font-semibold">Adicional</label>
-            <input type="text" name="id_adicional" class="w-full border p-2 rounded">
+        <div class="form-group">
+            <label>ID Adicional</label>
+            <input type="text" name="id_adicional" class="input-field">
         </div>
 
         <!-- Botones -->
-        <div class="flex justify-end gap-4 mt-4">
-            <button type="submit" class="btn-submit">💾 Guardar</button>
-            <a href="{{ route('platillos.index') }}" class="btn-cancel">❌ Cancelar</a>
+        <div class="form-actions">
+            <a href="{{ route('platillos.index') }}" class="btn-cancelar">⬅️ Volver</a>
+            <button type="submit" class="btn-guardar">💾 Guardar</button>
         </div>
     </form>
 </div>
-
 @endsection

@@ -10,79 +10,99 @@ body {
 /* ====== Caja principal ====== */
 .dashboard-box {
     background: rgba(255, 255, 255, 0.92);
-    border-radius: 1rem;
     padding: 2rem;
-    max-width: 900px;
-    margin: 3rem auto;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin: 2rem auto;
+    width: 80%;
 }
 
 /* ====== Título ====== */
-.dashboard-box h1 {
+.form-title {
     font-size: 1.8rem;
     font-weight: bold;
+    color: #111827;
     margin-bottom: 1.5rem;
-    color: #1f2937;
     text-align: center;
 }
 
 /* ====== Inputs ====== */
-.dashboard-box label {
-    font-weight: 600;
-    color: #374151;
-    display: block;
-    margin-bottom: 0.4rem;
+.form-group {
+    margin-bottom: 1.2rem;
 }
 
-.dashboard-box input,
-.dashboard-box textarea,
-.dashboard-box select {
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #374151;
+}
+
+.input-field {
     width: 100%;
+    padding: 0.6rem 0.8rem;
     border: 1px solid #d1d5db;
     border-radius: 0.5rem;
-    padding: 0.80rem;
-    margin-bottom: 1rem;
     font-size: 1rem;
-    transition: border 0.2s, box-shadow 0.2s;
+    transition: all 0.2s;
 }
 
-.dashboard-box input:focus,
-.dashboard-box textarea:focus,
-.dashboard-box select:focus {
+.input-field:focus {
+    border-color: #2563eb;
     outline: none;
-    border-color: #6366f1;
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 0 4px #2563eb;
 }
 
 /* ====== Botones ====== */
-.btn-submit {
-    display: inline-block;
-    background: #2563eb;
-    color: #fff;
-    padding: 0.7rem 1.2rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-.btn-submit:hover {
-    background: #1d4ed8;
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
-.btn-cancel {
-    display: inline-block;
-    background: #ef4444;
+.btn-cancelar {
+    background: #6b7280;
     color: #fff;
-    padding: 0.7rem 1.2rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 0.5rem;
-    font-weight: 600;
     text-decoration: none;
+    transition: background 0.2s;
+}
+
+.btn-cancelar:hover {
+    background: #4b5563;
+}
+
+.btn-guardar {
+    background: #10b981;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
     border: none;
     cursor: pointer;
     transition: background 0.2s;
 }
-.btn-cancel:hover {
-    background: #b91c1c;
+
+.btn-guardar:hover {
+    background: #059669;
+}
+
+/* ====== Notificaciones ====== */
+.alert-success {
+    background: #d1fae5;
+    border: 1px solid #10b981;
+    color: #065f46;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+}
+
+.alert-error {
+    background: #fee2e2;
+    border: 1px solid #ef4444;
+    color: #991b1b;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
 }

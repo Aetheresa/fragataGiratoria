@@ -24,7 +24,7 @@
       <a href="{{ route('inicio') }}">Inicio</a>
       <a href="{{ route('login') }}">Iniciar Sesión</a>
       <a href="{{ route('register') }}">Registrarse</a>
-      <a href="{{ route('contacto.form') }}">Contáctanos</a>
+      <a href="{{ route('contacto') }}">Contáctanos</a>
       <a href="{{ route('carrito') }}" class="icono-carrito" aria-label="Carrito">
         <img src="{{ asset('JPG/carrito.png') }}" alt="Icono carrito de compras" />
       </a>
@@ -42,6 +42,6 @@
       </a>
     </section>
   </main>
-@include('layouts.footer')
+
 </body>
 </html>
