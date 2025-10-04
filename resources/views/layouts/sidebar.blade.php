@@ -27,7 +27,7 @@
                     <a href="{{ route('productos.index') }}" class="nav-button {{ request()->routeIs('productos.index') ? 'active' : '' }}">Productos</a>
                     <a href="{{ route('platillos.index') }}" class="nav-button {{ request()->routeIs('platillos.*') ? 'active' : '' }}">Platillos</a>
                     <a href="{{ route('compras.index') }}" class="nav-button {{ request()->routeIs('compras.*') ? 'active' : '' }}">Compras</a>
-                    <a href="{{ route('pedidos.index') }}" class="nav-button {{ request()->routeIs('pedidos.*') ? 'active' : '' }}">Pedidos</a>
+                    <a href="{{ route('pedidos') }}" class="nav-button {{ request()->routeIs('pedidos.*') ? 'active' : '' }}">Pedidos</a>
                     <a href="{{ route('usuarios.index') }}" class="nav-button {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">Usuarios</a>
                     <a href="{{ route('precios') }}" class="nav-button {{ request()->routeIs('precios') ? 'active' : '' }}">Precios</a>
                 </nav>
