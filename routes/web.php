@@ -27,33 +27,31 @@ Route::get('/carrito', fn() => view('carrito'))->name('carrito');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/menu', fn() => view('menu'))->name('menu');
-    Route::resource('employee', EmployeeController::class)->names('employee');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    // ✅ CRUD principales
+    // CRUD principales
+    Route::resource('employee', EmployeeController::class)->names('employee');
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('productos', ProductoController::class);
     Route::resource('compras', CompraController::class);
 
-    // ✅ Platillos: permite abrir /platillos/edit sin ID
+    // Platillos: manejo de edit sin ID
     Route::get('platillos/edit', function () {
-        $platillo = \App\Models\Platillo::first();
-        if (!$platillo) {
-            $platillo = \App\Models\Platillo::create([
-                'nombre_platillo' => 'Nuevo platillo temporal',
-                'descripcion' => 'Descripción temporal',
-                'precio' => 0,
-                'id_adicional' => null,
-            ]);
-        }
-        return redirect()->route('platillos.edit', ['platillo' => $platillo->id_platillo]);
+        $platillo = \App\Models\Platillo::first() ?? \App\Models\Platillo::create([
+            'nombre_platillo' => 'Nuevo platillo temporal',
+            'descripcion' => 'Descripción temporal',
+            'precio' => 0,
+            'id_adicional' => null,
+        ]);
+        return redirect()->route('platillos.edit', $platillo);
     });
     Route::resource('platillos', PlatilloController::class);
 
     // Otros CRUD
     Route::resource('pedidos', PedidoController::class);
-    Route::resource('metodosdepago', MetodoDePagoController::class)
-        ->parameters(['metodosdepago' => 'metodo']);
+
+    // ✅ Métodos de pago
+    Route::resource('metodosdepago', MetodoDePagoController::class);
 
     // Exportar PDF
     Route::get('/usuarios/pdf', [UsuarioController::class, 'exportarPDF'])->name('usuarios.pdf');
